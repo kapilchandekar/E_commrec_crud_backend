@@ -11,6 +11,8 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+const PORT = process.env.PORT || 5000
+
 app.post("/register", async (req, resp) => {
   if (req.body.email && req.body.name && req.body.password) {
     let user = new User(req.body);
@@ -99,4 +101,4 @@ app.get("/search/:key", async (req, resp) => {
   resp.send(result);
 });
 
-app.listen(5000);
+app.listen(PORT);
