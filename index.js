@@ -1,4 +1,5 @@
 const express = require("express");
+require('dotenv').config();
 const cors = require("cors");
 require("./db/config");
 const User = require("./db/user");
@@ -33,7 +34,10 @@ app.post("/login", async (req, resp) => {
       resp.status(404).send({ error: "No User Found" });
     }
   } else {
-    resp.status(404).send({ Error: "Email or Password are missing" });
+    resp.status(400).send({
+      success: false,
+      message: "Please enter email and password"
+    })
   }
 });
 
